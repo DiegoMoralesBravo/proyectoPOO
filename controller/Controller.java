@@ -5,11 +5,11 @@ import java.util.List;
 
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
- 
 
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -18,13 +18,17 @@ import javax.swing.event.MouseInputListener;
 
 import view.View;
 
-public class Controller implements MouseInputListener{
+public class Controller implements MouseInputListener {
 
     private View view;
 
     private int contador = 0;
+
+    private Path org, destTwo;
     private Resize resize = new Resize();
     private List<String> imagenesMostrar = new ArrayList<String>();
+
+    private File archive;
 
     public Controller(View view) {
         this.view = view;
@@ -52,7 +56,7 @@ public class Controller implements MouseInputListener{
             }
         }
         System.out.println(imagenesMostrar);
-  
+
     }
 
     /**
@@ -67,7 +71,9 @@ public class Controller implements MouseInputListener{
         view.imageLoaderButton.addMouseListener(this);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
      */
     @Override
@@ -92,54 +98,64 @@ public class Controller implements MouseInputListener{
 
         System.out.println(contador);
 
-        View.imagen.setIcon(resize.resizeImage(new ImageIcon( imagenesMostrar.get(contador) + ".png")));
+        // View.imagen.setIcon(resize.resizeImage(new ImageIcon(imagenesMostrar.get(contador) + ".png")));
 
-        if(e.getSource() == view.addImage){
+        if (e.getSource() == view.addImage) {
 
             view.panel1.setVisible(false);
             view.panel2.setVisible(true);
 
         }
 
-        if(e.getSource() == view.viewImages){
+        if (e.getSource() == view.viewImages) {
 
             view.panel1.setVisible(true);
             view.panel2.setVisible(false);
 
         }
+        // if (e.getSource() == view.saveText) {
 
-        if(e.getSource() == view.imageLoaderButton){
+        //     try {
+        //         Files.copy(org, destTwo, StandardCopyOption.REPLACE_EXISTING);
+        //         JOptionPane.showMessageDialog(null, "El archivo fue copiado con exito en la carpeta");
 
+        //         String[] archivoTxtName = (archive.getName()).split("\\.");
+                
+        //         File myObj = new File(System.getProperty("user.dir") + "/images/"  +archivoTxtName[0] + ".txt");
+
+        //         FileWriter fw = new FileWriter(myObj.getAbsoluteFile(), true);
+        //         view.textArea.write(fw);
+
+        //     } catch (Exception error) {
+        //         System.out.println(error);
+        //     }
+
+        // }
+
+        if (e.getSource() == view.imageLoaderButton) {
 
             JFileChooser imageLoader = new JFileChooser();
 
             imageLoader.showOpenDialog(imageLoader);
-            
-            File archive = imageLoader.getSelectedFile();
+
+            archive = imageLoader.getSelectedFile();
 
             String origen = archive.getPath();
 
             System.out.println(origen);
 
+            if (archive != null) {
+                try {
 
+                    String dest = System.getProperty("user.dir") + "/images/" + archive.getName();
 
-            if(archive != null){
-                try{
-
-                    String dest = System.getProperty("user.dir")  + "/images/" + archive.getName();
-                    Path destTwo = Paths.get(dest);
+                    destTwo = Paths.get(dest);
 
                     String origin = archive.getPath();
-                    Path org = Paths.get(origin);
 
-                    Files.copy(org, destTwo,StandardCopyOption.REPLACE_EXISTING );
+                    org = Paths.get(origin);
 
-                    JOptionPane.showMessageDialog(null, "El archivo fue copiado con exito en la carpeta" + dest);
-
-
-
-
-                }catch(Exception error){
+                } catch (Exception error) {
 
                     System.out.println("algo paso");
 
@@ -147,7 +163,6 @@ public class Controller implements MouseInputListener{
             }
             System.out.println("evento subir");
 
-            
         }
     }
 
