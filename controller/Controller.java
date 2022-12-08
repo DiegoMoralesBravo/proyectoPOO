@@ -68,67 +68,59 @@ public class Controller implements MouseInputListener {
         view.prev.addMouseListener(this);
         view.addImage.addMouseListener(this);
         view.viewImages.addMouseListener(this);
+        view.confirmButton.addMouseListener(this);
+        view.cancelButton.addMouseListener(this);
         view.imageLoaderButton.addMouseListener(this);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
-     */
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        if (e.getSource() == view.next) {
-
-            if (contador >= imagenesMostrar.size() - 1) {
-                contador = 0;
-            } else {
-                contador++;
-            }
-        }
-
-        if (e.getSource() == view.prev) {
-            if (contador <= 0) {
-                contador = imagenesMostrar.size() - 1;
-            } else {
-                contador--;
-            }
-        }
-
-        System.out.println(contador);
-
-        // View.imagen.setIcon(resize.resizeImage(new ImageIcon(imagenesMostrar.get(contador) + ".png")));
-
         if (e.getSource() == view.addImage) {
-
             view.panel1.setVisible(false);
             view.panel2.setVisible(true);
-
         }
 
         if (e.getSource() == view.viewImages) {
-
             view.panel1.setVisible(true);
             view.panel2.setVisible(false);
-
         }
+
+        // if (e.getSource() == view.next) {
+
+        // if (contador >= imagenesMostrar.size() - 1) {
+        // contador = 0;
+        // } else {
+        // contador++;
+        // }
+        // }
+
+        // if (e.getSource() == view.prev) {
+        // if (contador <= 0) {
+        // contador = imagenesMostrar.size() - 1;
+        // } else {
+        // contador--;
+        // }
+        // }
+
         // if (e.getSource() == view.saveText) {
 
-        //     try {
-        //         Files.copy(org, destTwo, StandardCopyOption.REPLACE_EXISTING);
-        //         JOptionPane.showMessageDialog(null, "El archivo fue copiado con exito en la carpeta");
+        // try {
+        // Files.copy(org, destTwo, StandardCopyOption.REPLACE_EXISTING);
+        // JOptionPane.showMessageDialog(null, "El archivo fue copiado con exito en la
+        // carpeta");
 
-        //         String[] archivoTxtName = (archive.getName()).split("\\.");
-                
-        //         File myObj = new File(System.getProperty("user.dir") + "/images/"  +archivoTxtName[0] + ".txt");
+        // String[] archivoTxtName = (archive.getName()).split("\\.");
 
-        //         FileWriter fw = new FileWriter(myObj.getAbsoluteFile(), true);
-        //         view.textArea.write(fw);
+        // File myObj = new File(System.getProperty("user.dir") + "/images/"
+        // +archivoTxtName[0] + ".txt");
 
-        //     } catch (Exception error) {
-        //         System.out.println(error);
-        //     }
+        // FileWriter fw = new FileWriter(myObj.getAbsoluteFile(), true);
+        // view.textArea.write(fw);
+
+        // } catch (Exception error) {
+        // System.out.println(error);
+        // }
 
         // }
 
@@ -161,9 +153,36 @@ public class Controller implements MouseInputListener {
 
                 }
             }
-            System.out.println("evento subir");
+
+            view.imageLoaderButton.setVisible(false);
+            view.imagenPreview.setVisible(true);
+            view.chartPreview.setVisible(true);
+            view.panel2Inputs.setVisible(true);
+            view.cancelButton.setVisible(true);
+            view.confirmButton.setVisible(true);
+        }
+
+        if (e.getSource() == view.cancelButton) {
+
+            view.imageLoaderButton.setVisible(true);
+            view.imagenPreview.setVisible(false);
+            view.chartPreview.setVisible(false);
+            view.panel2Inputs.setVisible(false);
+            view.cancelButton.setVisible(false);
+            view.confirmButton.setVisible(false);
 
         }
+
+        if (e.getSource() == view.confirmButton) {
+
+            view.imageLoaderButton.setVisible(true);
+            view.imagenPreview.setVisible(false);
+            view.chartPreview.setVisible(false);
+            view.panel2Inputs.setVisible(false);
+            view.cancelButton.setVisible(false);
+            view.confirmButton.setVisible(false);
+        }
+
     }
 
     @Override

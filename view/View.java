@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,19 +12,19 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 
-import controller.Resize;
-
 public class View extends JFrame {
 
     public JButton prev, next, addImage, viewImages, imageLoaderButton, confirmButton, cancelButton;
 
-    public static JLabel imagenPreview, chartPreview;
+    public JLabel imagenPreview, chartPreview;
 
-    public static JLabel nombre, numero, tamano, morfologia, fecha, comentarios;
+    public JLabel nombre, numero, tamano, fecha, morfologia, comentarios;
 
-    public static JTextField inputName, inputMorfologia;
+    public JTextField inputName;
 
-    public JPanel panel1, panel2;
+    public JComboBox jboxMorfologia;
+
+    public JPanel panel1, panel2, panel2Inputs;
 
     public JTextArea textAreaComentarios;
 
@@ -40,6 +41,9 @@ public class View extends JFrame {
         panel2.setBackground(Color.white);
         panel2.setBounds(10, 50, 1005, 670);
         panel2.setVisible(true);
+
+        panel2Inputs = new JPanel();
+        panel2Inputs.setBounds(500, 20, 300, 300);
 
         addImage = new JButton("Add image");
         addImage.setBounds(211, 1, 200, 50);
@@ -62,21 +66,16 @@ public class View extends JFrame {
         panel2.add(imagenPreview);
         panel2.add(chartPreview);
 
+        panel2Inputs.add(nombre);
+        panel2Inputs.add(inputName);
+        panel2Inputs.add(numero);
+        panel2Inputs.add(tamano);
+        panel2Inputs.add(morfologia);
+        panel2Inputs.add(jboxMorfologia);
+        panel2Inputs.add(comentarios);
+        panel2Inputs.add(scrollArea);
 
-
-        panel2.add(nombre);
-        panel2.add(inputName);
-
-        panel2.add(numero);
-        panel2.add(tamano);
-
-        panel2.add(morfologia);
-        panel2.add(inputMorfologia);
-
-        panel2.add(comentarios);
-
-        panel2.add(scrollArea);
-
+        panel2.add(panel2Inputs);
 
         panel2.add(confirmButton);
         panel2.add(cancelButton);
@@ -88,6 +87,7 @@ public class View extends JFrame {
         add(addImage);
 
         panel2.setLayout(null);
+        panel2Inputs.setLayout(null);
         panel1.setLayout(null);
     }
 
@@ -109,7 +109,6 @@ public class View extends JFrame {
 
         imageLoaderButton = new JButton("Cargar nueva imagen");
         imageLoaderButton.setBounds((1005 / 2) - 100, (768 / 2) - 60, 200, 30);
-        imageLoaderButton.setVisible(false);
 
         imagenPreview = new JLabel();
         imagenPreview.setIcon(new ImageIcon("test1.png"));
@@ -120,30 +119,31 @@ public class View extends JFrame {
         chartPreview.setBounds(20, 340, 400, 300);
 
         nombre = new JLabel("Nombre: ");
-        nombre.setBounds(500, 20, 100, 20);
+        nombre.setBounds(0, 0, 100, 20);
 
         inputName = new JTextField();
-        inputName.setBounds(600, 20, 200, 20);
+        inputName.setBounds(100, 0, 200, 20);
 
         numero = new JLabel("Numero: ");
-        numero.setBounds(500, 60, 100, 20);
+        numero.setBounds(0, 40, 100, 20);
 
         tamano = new JLabel("Tamano: ");
-        tamano.setBounds(500, 100, 100, 20);
+        tamano.setBounds(0, 80, 100, 20);
 
         morfologia = new JLabel("Morfologia: ");
-        morfologia.setBounds(500, 140, 100, 20);
+        morfologia.setBounds(0, 120, 100, 20);
 
-        inputMorfologia = new JTextField();
-        inputMorfologia.setBounds(600, 140, 200, 20);
+        String morfoString[] = { "Redonda", "Cuadrada", "Piramidal", "Otra" };
+
+        jboxMorfologia = new JComboBox(morfoString);
+        jboxMorfologia.setBounds(100, 120, 200, 20);
 
         comentarios = new JLabel("Comentarios: ");
-        comentarios.setBounds(500, 180, 100, 20);
+        comentarios.setBounds(0, 160, 100, 20);
 
         textAreaComentarios = new JTextArea("Comentario...");
         scrollArea = new JScrollPane(textAreaComentarios);
-        scrollArea.setBounds(500, 200, 100, 200);
-
+        scrollArea.setBounds(0, 200, 300, 100);
 
         confirmButton = new JButton("Guardar");
         confirmButton.setBounds(600, 580, 120, 60);
@@ -151,10 +151,11 @@ public class View extends JFrame {
         cancelButton = new JButton("Cancelar");
         cancelButton.setBounds(800, 580, 120, 60);
 
-        // cancelButton.setVisible(false);
-        // confirmButton.setVisible(false);
-        // scrollArea.setVisible(false);
-        // textArea.setVisible(false);
+        imagenPreview.setVisible(false);
+        chartPreview.setVisible(false);
+        panel2Inputs.setVisible(false);
+        cancelButton.setVisible(false);
+        confirmButton.setVisible(false);
 
     }
 
