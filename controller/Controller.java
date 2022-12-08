@@ -103,26 +103,25 @@ public class Controller implements MouseInputListener {
         // }
         // }
 
-        // if (e.getSource() == view.saveText) {
+        if (e.getSource() == view.confirmButton) {
 
-        // try {
-        // Files.copy(org, destTwo, StandardCopyOption.REPLACE_EXISTING);
-        // JOptionPane.showMessageDialog(null, "El archivo fue copiado con exito en la
-        // carpeta");
+        try {
+            Files.copy(org, destTwo, StandardCopyOption.REPLACE_EXISTING);
+            JOptionPane.showMessageDialog(null, "El archivo fue copiado con exito en la carpeta");
 
-        // String[] archivoTxtName = (archive.getName()).split("\\.");
+            String[] archivoTxtName = (archive.getName()).split("\\.");
 
-        // File myObj = new File(System.getProperty("user.dir") + "/images/"
-        // +archivoTxtName[0] + ".txt");
+            File reporteTxt = new File(System.getProperty("user.dir") + "/images/" + archivoTxtName[0] + ".txt");
 
-        // FileWriter fw = new FileWriter(myObj.getAbsoluteFile(), true);
-        // view.textArea.write(fw);
+            FileWriter fw = new FileWriter(reporteTxt.getAbsoluteFile(), true);
 
-        // } catch (Exception error) {
-        // System.out.println(error);
-        // }
+        } catch (Exception error) {
 
-        // }
+            System.out.println(error);
+
+        }
+
+        }
 
         if (e.getSource() == view.imageLoaderButton) {
 
@@ -131,10 +130,6 @@ public class Controller implements MouseInputListener {
             imageLoader.showOpenDialog(imageLoader);
 
             archive = imageLoader.getSelectedFile();
-
-            String origen = archive.getPath();
-
-            System.out.println(origen);
 
             if (archive != null) {
                 try {
@@ -153,6 +148,10 @@ public class Controller implements MouseInputListener {
 
                 }
             }
+            view.imagenPreview.setIcon(resize.resizeImage(new ImageIcon(archive.getPath())));
+
+            int numero = (int)(Math.random()*10+1);
+            view.chartPreview.setIcon(resize.resizeImage(new ImageIcon("./histogram/" + numero + ".png")));
 
             view.imageLoaderButton.setVisible(false);
             view.imagenPreview.setVisible(true);

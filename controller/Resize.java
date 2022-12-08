@@ -8,7 +8,7 @@ public class Resize {
     public ImageIcon resizeImage(ImageIcon icon) {
 
         Image imagenIcono = icon.getImage();
-        Image imagenModificada = imagenIcono.getScaledInstance(400, 400, java.awt.Image.SCALE_SMOOTH);
+        Image imagenModificada = imagenIcono.getScaledInstance(400, 300, java.awt.Image.SCALE_SMOOTH);
 
         return new ImageIcon(imagenModificada);
     }

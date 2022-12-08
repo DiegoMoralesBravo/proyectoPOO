@@ -111,11 +111,9 @@ public class View extends JFrame {
         imageLoaderButton.setBounds((1005 / 2) - 100, (768 / 2) - 60, 200, 30);
 
         imagenPreview = new JLabel();
-        imagenPreview.setIcon(new ImageIcon("test1.png"));
         imagenPreview.setBounds(20, 20, 400, 300);
 
         chartPreview = new JLabel();
-        chartPreview.setIcon(new ImageIcon("test2.png"));
         chartPreview.setBounds(20, 340, 400, 300);
 
         nombre = new JLabel("Nombre: ");
