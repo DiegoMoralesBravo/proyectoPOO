@@ -14,11 +14,17 @@ import javax.swing.ImageIcon;
 
 public class View extends JFrame {
 
-    public JButton prev, next, addImage, viewImages, imageLoaderButton, confirmButton, cancelButton;
+    public JButton prev, next, addImage, viewImages, imageLoaderButton, confirmButton, cancelButton, exportButton;
 
     public JLabel imagenPreview, chartPreview;
 
+    public JLabel imagenReport, chartReport;
+
     public JLabel nombre, numero, tamano, fecha, morfologia, comentarios;
+
+    public JLabel inputNumero, inputTamano;
+
+    public JLabel noHay, reporteTXT;
 
     public JTextField inputName;
 
@@ -45,11 +51,11 @@ public class View extends JFrame {
         panel2Inputs = new JPanel();
         panel2Inputs.setBounds(500, 20, 300, 300);
 
-        addImage = new JButton("Add image");
+        addImage = new JButton("Anadir imagen");
         addImage.setBounds(211, 1, 200, 50);
         addImage.setBackground(Color.white);
 
-        viewImages = new JButton("View images");
+        viewImages = new JButton("Ver imagenes");
         viewImages.setBounds(10, 1, 200, 50);
         viewImages.setBackground(Color.white);
 
@@ -60,6 +66,12 @@ public class View extends JFrame {
 
         panel1.add(prev);
         panel1.add(next);
+        panel1.add(noHay);
+        panel1.add(reporteTXT);
+        panel1.add(imagenReport);
+        panel1.add(chartReport);
+
+        panel1.add(exportButton);
 
         panel2.add(imageLoaderButton);
 
@@ -74,6 +86,8 @@ public class View extends JFrame {
         panel2Inputs.add(jboxMorfologia);
         panel2Inputs.add(comentarios);
         panel2Inputs.add(scrollArea);
+        panel2Inputs.add(inputNumero);
+        panel2Inputs.add(inputTamano);
 
         panel2.add(panel2Inputs);
 
@@ -96,10 +110,30 @@ public class View extends JFrame {
         // Aqui seria poner un tipo preview sin nada de informacion
 
         prev = new JButton("<");
-        prev.setBounds(10, 369, 60, 30);
+        prev.setBounds(10, (768 / 2) - 60, 60, 20);
 
         next = new JButton(">");
-        next.setBounds(1, 1, 60, 30);
+        next.setBounds(1005 - 70, (768 / 2) - 60, 60, 20);
+
+        noHay = new JLabel("No hay reportes que mostrar...");
+        noHay.setBounds((1005 / 2) - 120, (768 / 2) - 60, 300, 30);
+
+        reporteTXT = new JLabel();
+        reporteTXT.setBounds(90, 300, 600, 500);
+
+        imagenReport = new JLabel();
+        imagenReport.setBounds(90, 100, 400, 300);
+
+        chartReport = new JLabel();
+        chartReport.setBounds(520, 100, 400, 300);
+
+        exportButton = new JButton("Exportar");
+        exportButton.setBounds(760, 580, 120, 60);
+
+        exportButton.setVisible(false);
+
+        next.setVisible(false);
+        prev.setVisible(false);
     }
 
     /**
@@ -125,8 +159,14 @@ public class View extends JFrame {
         numero = new JLabel("Numero: ");
         numero.setBounds(0, 40, 100, 20);
 
+        inputNumero = new JLabel("aleatorio");
+        inputNumero.setBounds(100, 40, 150, 20);;
+
         tamano = new JLabel("Tamano: ");
         tamano.setBounds(0, 80, 100, 20);
+
+        inputTamano = new JLabel("aleatorio");
+        inputTamano.setBounds(100, 80, 150, 20);
 
         morfologia = new JLabel("Morfologia: ");
         morfologia.setBounds(0, 120, 100, 20);

@@ -1,0 +1,2 @@
+<html> <p> Nombre de la imagen: test3<p><html> <p> Persona que genero reporte: <p>Numero de nanoparticulas: 86 nanoparticulas<p>Tamano promedio de nanoparticulas: 41 nanometros nm <p>Morofologia: Redonda<p>Comentarios: Comentarios...<p>Fecha: Thu, 8 Dec 2022, 11:52:12 CST
+ <p><html>
